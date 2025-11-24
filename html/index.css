@@ -1,0 +1,626 @@
+/* style.css - Sötét és Ijesztő Téma */
+
+:root {
+    --blood-red: #8b0000;
+    --dark-blood: #5c0000;
+    --black-blood: #2d0000;
+    --void-black: #0a0a0a;
+    --abyss-black: #111111;
+    --shadow-black: #1a1a1a;
+    --bone-white: #c9c9c9;
+    --ghost-gray: #8a8a8a;
+    --blood-glow: #ff0000;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0 10px 40px rgba(139, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'MedievalSharp', cursive;
+    background: var(--void-black);
+    color: var(--bone-white);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Háttér effektek */
+.blood-drips::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-skulls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" opacity="0.05"><text x="0" y="35" font-family="Arial" font-size="30" fill="%238B0000">💀</text></svg>');
+    animation: floatSkulls 30s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes floatSkulls {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-100px) translateX(50px); }
+}
+
+.dark-mist {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, transparent 0%, var(--void-black) 70%),
+        radial-gradient(circle at 80% 70%, transparent 0%, var(--void-black) 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Fejléc */
+
+/* Fő header stílusok - teljes szélességű, border nélkül */
+.main-header {
+    background: linear-gradient(135deg, var(--abyss-black), var(--void-black));
+    padding: 0;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--blood-glow), transparent);
+    animation: bloodPulse 3s infinite;
+}
+
+.candle-light {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 25px;
+    height: 35px;
+    background: radial-gradient(circle, var(--blood-glow) 0%, transparent 70%);
+    filter: blur(6px);
+    animation: flicker 2s infinite alternate;
+}
+
+/* Header tartalom - FELÜL, teljes szélességű */
+/* Fő header stílusok - teljesen átlátszó háttér */
+.main-header {
+    background: transparent;
+    padding: 0;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--blood-glow), transparent);
+    animation: bloodPulse 3s infinite;
+}
+
+.candle-light {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 25px;
+    height: 35px;
+    background: radial-gradient(circle, var(--blood-glow) 0%, transparent 70%);
+    filter: blur(6px);
+    animation: flicker 2s infinite alternate;
+    z-index: 10;
+}
+
+/* Header tartalom - FELÜL, teljesen átlátszó */
+.header-content {
+    text-align: center;
+    padding: 60px 0 40px 0;
+    background: transparent;
+    position: relative;
+    width: 100%;
+}
+
+.header-content::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
+}
+
+.header-content .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: var(--blood-red);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.8);
+    letter-spacing: 5px;
+    font-family: 'UnifrakturMaguntia', cursive;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.main-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--blood-glow), transparent);
+}
+
+.subtitle {
+    font-size: 1.6rem;
+    color: var(--ghost-gray);
+    margin-bottom: 25px;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
+}
+
+.intro {
+    font-size: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--ghost-gray);
+    line-height: 1.7;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Navigációs sáv - ALUL, teljesen átlátszó háttér */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 25px 0;
+    background: transparent;
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.main-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
+}
+
+.main-nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 30px;
+    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
+    color: var(--bone-white);
+    text-decoration: none;
+    border: 2px solid var(--blood-red);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.nav-item:hover::before {
+    left: 100%;
+}
+
+.nav-item:hover {
+    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.7);
+    border-color: var(--blood-glow);
+}
+
+.nav-home {
+    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
+    border-color: var(--blood-glow);
+    box-shadow: 0 0 25px rgba(139, 0, 0, 0.5);
+}
+
+.nav-home:hover {
+    background: linear-gradient(135deg, var(--blood-glow), var(--blood-red));
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
+}
+
+.nav-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
+}
+
+.nav-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+    letter-spacing: 1.5px;
+}
+
+/* Container általános stílus */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Reszponzív design */
+@media (max-width: 768px) {
+    .main-header {
+        margin-bottom: 20px;
+    }
+    
+    .header-content {
+        padding: 40px 0 30px 0;
+    }
+    
+    .header-content .container {
+        padding: 0 15px;
+    }
+    
+    .main-title {
+        font-size: 2.8rem;
+        letter-spacing: 3px;
+    }
+    
+    .main-title::after {
+        width: 250px;
+    }
+    
+    .subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .intro {
+        font-size: 1rem;
+    }
+    
+    .main-nav {
+        padding: 20px 0;
+    }
+    
+    .main-nav .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .nav-item {
+        width: 220px;
+        flex-direction: row;
+        justify-content: center;
+        padding: 15px 25px;
+    }
+    
+    .candle-light {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* Fő tartalom */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.dark-card {
+    flex: 1;
+    min-width: 300px;
+    background: linear-gradient(135deg, var(--abyss-black), var(--shadow-black));
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--dark-blood);
+    position: relative;
+    overflow: hidden;
+}
+
+.dark-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--blood-red);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.dark-card:hover::before {
+    transform: scaleX(1);
+}
+
+.dark-card h2 {
+    color: var(--blood-red);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--dark-blood);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    font-size: 1.8rem;
+}
+
+/* Karakter szekció */
+.character-sheet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.stat {
+    background: rgba(139, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    background: rgba(139, 0, 0, 0.3);
+    border-color: var(--blood-red);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--blood-red);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    margin: 10px 0;
+}
+
+.stat-name {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--ghost-gray);
+}
+
+/* Gombok */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
+    color: var(--bone-white);
+    padding: 12px 25px;
+    border: 1px solid var(--blood-red);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin: 10px 5px;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-family: 'MedievalSharp', cursive;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
+}
+
+.primary-dark-btn {
+    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+}
+
+.primary-dark-btn:hover {
+    background: linear-gradient(135deg, var(--blood-glow), var(--blood-red));
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.5);
+}
+
+/* Dobókocka */
+.dice-roller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.dark-dice {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--blood-red);
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--blood-red);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* Felszerelés */
+.inventory {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dark-item {
+    background: rgba(139, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.dark-item:hover {
+    background: rgba(139, 0, 0, 0.3);
+    border-color: var(--blood-red);
+    transform: translateY(-2px);
+}
+
+/* Szabályok */
+.rules-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.rules-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    color: var(--ghost-gray);
+}
+
+.rules-list li:before {
+    content: "💀";
+    position: absolute;
+    left: 0;
+    color: var(--blood-red);
+    font-size: 1.2rem;
+}
+
+.rules-list li strong {
+    color: var(--bone-white);
+}
+
+/* Akció gombok */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.selection-display {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    background: rgba(139, 0, 0, 0.2);
+    border-radius: 5px;
+    color: var(--blood-red);
+    font-weight: bold;
+}
+
+/* Lábléc */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--dark-blood);
+    font-size: 0.9rem;
+    color: var(--ghost-gray);
+    background: rgba(10, 10, 10, 0.8);
+    border-radius: 5px;
+}
+
+/* Reszponzív design */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .character-sheet {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
