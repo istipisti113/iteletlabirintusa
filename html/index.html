@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/x-icon" href="./menu_pictures/x-icon/Title-icon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Eater&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
@@ -18,15 +19,224 @@
   <script src="scroll-animations.js"></script>
 </head>
 <body>
-  <div id="header"></div>
-  <div>
-    <h1>Az Ítélet Labirintusa</h1>
-  </div>
-  <div id="card">
+  <!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ítélet Labirintusa - Kalandjáték</title>
+</head>
+<body>
+    <div class="blood-drips"></div>
+    <div class="floating-skulls"></div>
+    <div class="dark-mist"></div>
+    
+    <div class="container">
+    <header class="main-header">
+        <div class="candle-light"></div>
+        
+        <!-- Címsor és alcím FELÜL -->
+        <div class="header-content">
+            <div class="container">
+                <h1 class="main-title">Ítélet Labirintusa</h1>
+                <div class="subtitle">Ahol a halál leselkedik minden sarokban</div>
+                <p class="intro">Merj belevetni magad egy sötét és ijesztő kalandba, ahol minden döntésed a túlélésről szól. Készíts karaktert, gyűjts felszerelést, és bátran lépj be a labirintus átkozott folyosóira!</p>
+            </div>
+        </div>
+
+        <!-- Navigációs sáv ALUL -->
+        <nav class="main-nav">
+            <div class="container">
+                <a href="help.html" class="nav-item">
+                    <span class="nav-icon">❓</span>
+                    <span class="nav-label">Segítség</span>
+                </a>
+                <a href="index.html" class="nav-item nav-home">
+                    <span class="nav-icon">🏰</span>
+                    <span class="nav-label">Főoldal</span>
+                </a>
+                <a href="story.html" class="nav-item">
+                    <span class="nav-icon">📖</span>
+                    <span class="nav-label">Történet</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+
+        <main class="main-content">
+            <section class="character-section dark-card">
+                <h2>Karaktered</h2>
+                <div class="character-sheet">
+                    <div class="stat">
+                        <div class="stat-name">Ügyesség</div>
+                        <div class="stat-value" id="agility-value">0</div>
+                        <button class="btn dark-btn" onclick="rollStat('agility')">Dobás</button>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-name">Életerő</div>
+                        <div class="stat-value" id="health-value">0</div>
+                        <button class="btn dark-btn" onclick="rollStat('health')">Dobás</button>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-name">Szerencse</div>
+                        <div class="stat-value" id="luck-value">0</div>
+                        <button class="btn dark-btn" onclick="rollStat('luck')">Dobás</button>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-name">Kezdeti Életerő</div>
+                        <div class="stat-value" id="initial-health-value">0</div>
+                    </div>
+                </div>
+                
+                <div class="dice-roller">
+                    <h3>Dobókocka</h3>
+                    <div class="dice-container">
+                        <div class="dice dark-dice" id="dice1">-</div>
+                        <div class="dice dark-dice" id="dice2">-</div>
+                    </div>
+                    <button class="btn dark-btn" onclick="rollDice()">Dobás</button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn primary-dark-btn" onclick="generateCharacter()">Karakter generálása</button>
+                    <button class="btn dark-btn" onclick="resetCharacter()">Alaphelyzet</button>
+                </div>
+            </section>
+            
+            <section class="equipment-section dark-card">
+                <h2>Felszerelés</h2>
+                <div class="inventory">
+                    <div class="inventory-item dark-item">Kard</div>
+                    <div class="inventory-item dark-item">Pajzs</div>
+                    <div class="inventory-item dark-item">Bőrvért</div>
+                    <div class="inventory-item dark-item">Hátizsák</div>
+                    <div class="inventory-item dark-item">Élelem (6 adag)</div>
+                    <div class="inventory-item dark-item">Aranytallér (20)</div>
+                </div>
+                
+                <h3>Válassz egy varázsitalt:</h3>
+                <div class="action-buttons">
+                    <button class="btn dark-btn" onclick="selectPotion('agility')">Ügyesség Itala</button>
+                    <button class="btn dark-btn" onclick="selectPotion('health')">Életerő Itala</button>
+                    <button class="btn dark-btn" onclick="selectPotion('luck')">Szerencse Itala</button>
+                </div>
+                <div id="potion-selection" class="selection-display"></div>
+            </section>
+            
+            <section class="rules-section dark-card">
+                <h2>A játék szabályai</h2>
+                <ul class="rules-list">
+                    <li><strong>Ügyesség (ÜGY):</strong> 1 kocka + 6. Kardvívó tudásodat és harci tapasztalatodat mutatja.</li>
+                    <li><strong>Életerő (ÉLT):</strong> 2 kocka + 12. Kondíciód, akaraterőd és túlélőképességed.</li>
+                    <li><strong>Szerencse (SZER):</strong> 1 kocka + 6. Mennyire vagy szerencsés a kalandok során.</li>
+                    <li><strong>Csata:</strong> Mindkét fél dob 2 kockával és hozzáadja Ügyességét. Aki magasabb értéket ér el, az sebzi ellenfelét (-2 Életerő).</li>
+                    <li><strong>Szerencse próba:</strong> Dobj 2 kockával. Ha az eredmény ≤ Szerencse pontjaid, sikerült. Minden próba -1 Szerencse.</li>
+                    <li><strong>Élelem:</strong> Minden elfogyasztott adag +4 Életerőt ad vissza.</li>
+                </ul>
+                
+                <div class="action-buttons">
+                    <button class="btn primary-dark-btn" onclick="startAdventure()">Kezdd a kalandot!</button>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="main-footer">
+            <p>Ítélet Labirintusa - Kalandjáték | Készítette: A Kaland Szerelmesei</p>
+            <p>Ez egy nem hivatalos, gyakorlási célú webes változata a klasszikus kalandjátékoknak.</p>
+        </footer>
+    </div>
+
     <script>
-      loadPage("/card/1", "card")
+        let character = {
+            agility: 0,
+            health: 0,
+            luck: 0,
+            initialHealth: 0,
+            potion: null
+        };
+        
+        function rollDice() {
+            const dice1 = Math.floor(Math.random() * 6) + 1;
+            const dice2 = Math.floor(Math.random() * 6) + 1;
+            
+            document.getElementById('dice1').textContent = dice1;
+            document.getElementById('dice2').textContent = dice2;
+            
+            return { dice1, dice2 };
+        }
+        
+        function rollStat(stat) {
+            let value = 0;
+            
+            if (stat === 'agility' || stat === 'luck') {
+                value = Math.floor(Math.random() * 6) + 1 + 6;
+            } else if (stat === 'health') {
+                const dice = rollDice();
+                value = dice.dice1 + dice.dice2 + 12;
+                character.initialHealth = value;
+                document.getElementById('initial-health-value').textContent = character.initialHealth;
+            }
+            
+            character[stat] = value;
+            document.getElementById(`${stat}-value`).textContent = value;
+        }
+        
+        function generateCharacter() {
+            rollStat('agility');
+            rollStat('health');
+            rollStat('luck');
+            
+            alert('Karaktered elkészült! Ügyesség: ' + character.agility + 
+                  ', Életerő: ' + character.health + 
+                  ', Szerencse: ' + character.luck);
+        }
+        
+        function resetCharacter() {
+            character = {
+                agility: 0,
+                health: 0,
+                luck: 0,
+                initialHealth: 0,
+                potion: null
+            };
+            
+            document.getElementById('agility-value').textContent = '0';
+            document.getElementById('health-value').textContent = '0';
+            document.getElementById('luck-value').textContent = '0';
+            document.getElementById('initial-health-value').textContent = '0';
+            document.getElementById('dice1').textContent = '-';
+            document.getElementById('dice2').textContent = '-';
+            document.getElementById('potion-selection').textContent = '';
+        }
+        
+        function selectPotion(type) {
+            const potionNames = {
+                agility: 'Ügyesség Itala',
+                health: 'Életerő Itala',
+                luck: 'Szerencse Itala'
+            };
+            
+            character.potion = type;
+            document.getElementById('potion-selection').textContent = `Kiválasztva: ${potionNames[type]}`;
+        }
+        
+        function startAdventure() {
+            if (character.agility === 0 || character.health === 0 || character.luck === 0) {
+                alert('Először generálj karaktert a kaland megkezdése előtt!');
+                return;
+            }
+            
+            if (!character.potion) {
+                alert('Ne felejts el varázsitalt választani!');
+                return;
+            }
+            
+            alert('Sikeresen elindultál a kalandra! Bátorságodat és eszedet fogja próbára tenni az Ítélet Labirintusa.');
+        }
     </script>
-  </div>
+</body>
+</html>
   <div id="footer"></div>
 </body>
 </html>
