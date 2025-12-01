@@ -294,7 +294,7 @@ body {
 
 #rules-content {
     padding: 20px 15px;
-    text-align: center;
+    text-align: left;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
