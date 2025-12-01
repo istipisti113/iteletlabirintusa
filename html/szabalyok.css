@@ -302,6 +302,7 @@ body {
     justify-content: space-between;
     flex: 0 1 auto;
     max-width: 1800px;
+    color:#e7e7e7;
     width: 100%;
     background: linear-gradient(135deg, var(--abyss-black), var(--shadow-black));
     border-radius: 10px;

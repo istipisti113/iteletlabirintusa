@@ -32,37 +32,9 @@
     <div class="dark-mist"></div>
     
     <div class="container">
-    <header class="main-header">
-        <div class="candle-light"></div>
-        
-        <!-- Címsor és alcím FELÜL -->
-        <div class="header-content">
-            <div class="container">
-                <h1 class="main-title">Ítélet Labirintusa</h1>
-                <div class="subtitle">Ahol a halál leselkedik minden sarokban</div>
-                <p class="intro">Merj belevetni magad egy sötét és ijesztő kalandba, ahol minden döntésed a túlélésről szól. Készíts karaktert, gyűjts felszerelést, és bátran lépj be a labirintus átkozott folyosóira!</p>
-            </div>
+        <div id="header">
+            <script>loadPage("/header", "header")</script>
         </div>
-
-        <!-- Navigációs sáv ALUL -->
-        <nav class="main-nav">
-            <div class="container">
-                <a href="/szabalyok" class="nav-item">
-                    <span class="nav-icon">❓</span>
-                    <span class="nav-label">Szabályok</span>
-                </a>
-                <a href="index.html" class="nav-item nav-home">
-                    <span class="nav-icon">🏰</span>
-                    <span class="nav-label">Főoldal</span>
-                </a>
-                <a href="/tortenet" class="nav-item">
-                    <span class="nav-icon">📖</span>
-                    <span class="nav-label">Történet</span>
-                </a>
-            </div>
-        </nav>
-    </header>
-
 
         <main class="main-content">
             <section class="character-section dark-card">
@@ -125,23 +97,11 @@
                 <div id="potion-selection" class="selection-display"></div>
             </section>
             
-            <section class="rules-section dark-card">
-                <h2>A játék szabályai</h2>
-                <div id="szabalyok">
-                    <script>
-                        loadPage("/leiras", "szabalyok")
-                    </script>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn primary-dark-btn" onclick="startAdventure()">Kezdd a kalandot!</button>
-                </div>
-            </section>
         </main>
         
-        <footer class="main-footer">
-            <p>Ítélet Labirintusa - Kalandjáték | Készítette: A Kaland Szerelmesei</p>
-            <p>Ez egy nem hivatalos, gyakorlási célú webes változata a klasszikus kalandjátékoknak.</p>
-        </footer>
+        <div id="footer">
+            <script>loadPage("/footer", "footer")</script>
+        </div>
     </div>
 
     <script>
@@ -234,6 +194,5 @@
     </script>
 </body>
 </html>
-  <div id="footer"></div>
 </body>
 </html>
