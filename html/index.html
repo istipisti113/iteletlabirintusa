@@ -32,71 +32,123 @@
     <div class="dark-mist"></div>
     
     <div class="container">
+<<<<<<< Updated upstream
         <div id="header">
             <script>loadPage("/header", "header")</script>
         </div>
+=======
+        <header class="main-header">
+            <div class="candle-light"></div>
+            
+            <!-- Címsor és alcím FELÜL -->
+            <div class="header-content">
+                <div class="container">
+                    <h1 class="main-title">Ítélet Labirintusa</h1>
+                    <div class="subtitle">Ahol a halál leselkedik minden sarokban</div>
+                    <p class="intro">Merj belevetni magad egy sötét és ijesztő kalandba, ahol minden döntésed a túlélésről szól. Készíts karaktert, gyűjts felszerelést, és bátran lépj be a labirintus átkozott folyosóira!</p>
+                </div>
+            </div>
+
+            <!-- Navigációs sáv ALUL -->
+            <nav class="main-nav">
+                <div class="container">
+                    <a href="szabalyok.html" class="nav-item">
+                        <span class="nav-icon">❓</span>
+                        <span class="nav-label">Szabályok</span>
+                    </a>
+                    <a href="index.html" class="nav-item nav-home">
+                        <span class="nav-icon">🏰</span>
+                        <span class="nav-label">Főoldal</span>
+                    </a>
+                    <a href="hattertortenet.html" class="nav-item">
+                        <span class="nav-icon">📖</span>
+                        <span class="nav-label">Történet</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+>>>>>>> Stashed changes
 
         <main class="main-content">
+            <!-- Bal oldal: Karakter -->
             <section class="character-section dark-card">
-                <h2>Karaktered</h2>
+                <h2><i class="fas fa-user"></i> Karaktered</h2>
                 <div class="character-sheet">
                     <div class="stat">
                         <div class="stat-name">Ügyesség</div>
                         <div class="stat-value" id="agility-value">0</div>
-                        <button class="btn dark-btn" onclick="rollStat('agility')">Dobás</button>
+                        <button class="stat-btn" onclick="rollStat('agility')">
+                            <i class="fas fa-dice"></i> Dobás
+                        </button>
                     </div>
                     <div class="stat">
                         <div class="stat-name">Életerő</div>
                         <div class="stat-value" id="health-value">0</div>
-                        <button class="btn dark-btn" onclick="rollStat('health')">Dobás</button>
+                        <button class="stat-btn" onclick="rollStat('health')">
+                            <i class="fas fa-dice"></i> Dobás
+                        </button>
                     </div>
                     <div class="stat">
                         <div class="stat-name">Szerencse</div>
                         <div class="stat-value" id="luck-value">0</div>
-                        <button class="btn dark-btn" onclick="rollStat('luck')">Dobás</button>
+                        <button class="stat-btn" onclick="rollStat('luck')">
+                            <i class="fas fa-dice"></i> Dobás
+                        </button>
                     </div>
                     <div class="stat">
                         <div class="stat-name">Kezdeti Életerő</div>
                         <div class="stat-value" id="initial-health-value">0</div>
-                        <button class="btn dark-btn" id="kezdetiala"></button>
+                        <div class="stat-btn" id="kezdetiala"></div>
                     </div>
-                </div>
-                
-                <div class="dice-roller">
-                    <h3>Dobókocka</h3>
-                    <div class="dice-container">
-                        <div class="dice dark-dice" id="dice1">-</div>
-                        <div class="dice dark-dice" id="dice2">-</div>
-                    </div>
-                    <button class="btn dark-btn" onclick="rollDice()">Dobás</button>
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="btn primary-dark-btn" onclick="generateCharacter()">Karakter generálása</button>
-                    <button class="btn dark-btn" onclick="resetCharacter()">Alaphelyzet</button>
+                    <button class="btn primary-dark-btn" onclick="generateCharacter()">
+                        <i class="fas fa-magic"></i> Karakter generálása
+                    </button>
+                    <button class="btn dark-btn" onclick="resetCharacter()">
+                        <i class="fas fa-redo"></i> Alaphelyzet
+                    </button>
                 </div>
             </section>
             
+            <!-- Jobb oldal: Felszerelés -->
             <section class="equipment-section dark-card">
-                <h2>Felszerelés</h2>
+                <h2><i class="fas fa-shield-alt"></i> Felszerelés</h2>
                 <div class="inventory">
-                    <div class="inventory-item dark-item">Kard</div>
-                    <div class="inventory-item dark-item">Pajzs</div>
-                    <div class="inventory-item dark-item">Bőrvért</div>
-                    <div class="inventory-item dark-item">Hátizsák</div>
-                    <div class="inventory-item dark-item">Élelem (6 adag)</div>
-                    <div class="inventory-item dark-item">Aranytallér (20)</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-sword"></i> Kard</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-shield"></i> Pajzs</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-vest"></i> Bőrvért</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-backpack"></i> Hátizsák</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-apple-alt"></i> Élelem (6)</div>
+                    <div class="inventory-item dark-item"><i class="fas fa-coins"></i> Arany (20)</div>
                 </div>
                 
-                <h3>Válassz egy varázsitalt:</h3>
-                <div class="action-buttons">
-                    <button class="btn dark-btn" onclick="selectPotion('agility')">Ügyesség Itala</button>
-                    <button class="btn dark-btn" onclick="selectPotion('health')">Életerő Itala</button>
-                    <button class="btn dark-btn" onclick="selectPotion('luck')">Szerencse Itala</button>
+                <h3><i class="fas fa-flask"></i> Válassz egy varázsitalt:</h3>
+                <div class="potion-buttons">
+                    <button class="btn dark-btn potion-btn" onclick="selectPotion('agility')">
+                        <i class="fas fa-bolt"></i> Ügyesség
+                    </button>
+                    <button class="btn dark-btn potion-btn" onclick="selectPotion('health')">
+                        <i class="fas fa-heart"></i> Életerő
+                    </button>
+                    <button class="btn dark-btn potion-btn" onclick="selectPotion('luck')">
+                        <i class="fas fa-clover"></i> Szerencse
+                    </button>
                 </div>
                 <div id="potion-selection" class="selection-display"></div>
+<<<<<<< Updated upstream
             </section>
             
+=======
+                
+                <div class="action-buttons">
+                    <button class="btn primary-dark-btn" onclick="startAdventure()">
+                        <i class="fas fa-play"></i> Kezdd a kalandot!
+                    </button>
+                </div>
+            </section>
+>>>>>>> Stashed changes
         </main>
         
         <div id="footer">
@@ -113,58 +165,142 @@
             potion: null
         };
         
-        function rollDice() {
-            const dice1 = Math.floor(Math.random() * 6) + 1;
-            const dice2 = Math.floor(Math.random() * 6) + 1;
+        function showDiceAnimation(statElement, rolls) {
+            // Közvetlenül a stat element fölé animáljuk a kockákat
+            const rect = statElement.getBoundingClientRect();
+            const parentRect = statElement.parentElement.getBoundingClientRect();
             
-            document.getElementById('dice1').textContent = dice1;
-            document.getElementById('dice2').textContent = dice2;
+            // Hozz létre 2 kockát a stat számához
+            for (let i = 0; i < rolls.length; i++) {
+                const dice = document.createElement('div');
+                dice.className = 'dice dark-dice dice-rolling';
+                dice.textContent = '?';
+                dice.style.position = 'absolute';
+                dice.style.zIndex = '1000';
+                dice.style.width = '60px';
+                dice.style.height = '60px';
+                dice.style.fontSize = '1.8rem';
+                dice.style.left = `${rect.left + (i * 70)}px`;
+                dice.style.top = `${rect.top - 40}px`;
+                dice.style.animation = 'diceRoll 0.8s ease-out';
+                document.body.appendChild(dice);
+                
+                // Mutasd a kocka eredményét
+                setTimeout(() => {
+                    dice.textContent = rolls[i];
+                    setTimeout(() => {
+                        dice.remove();
+                    }, 800);
+                }, 800);
+            }
             
-            return { dice1, dice2 };
+            // Animáció a számokhoz
+            statElement.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                statElement.style.animation = '';
+            }, 500);
         }
         
         function rollStat(stat) {
+            const statElement = document.getElementById(`${stat}-value`);
+            
+            // Számítsd ki az értéket
             let value = 0;
+            let rolls = [];
             
             if (stat === 'agility' || stat === 'luck') {
-                value = Math.floor(Math.random() * 6) + 1 + 6;
+                const roll = Math.floor(Math.random() * 6) + 1;
+                rolls = [roll];
+                value = roll + 6;
             } else if (stat === 'health') {
-                const dice = rollDice();
-                value = dice.dice1 + dice.dice2 + 12;
+                const roll1 = Math.floor(Math.random() * 6) + 1;
+                const roll2 = Math.floor(Math.random() * 6) + 1;
+                rolls = [roll1, roll2];
+                value = roll1 + roll2 + 12;
                 character.initialHealth = value;
                 document.getElementById('initial-health-value').textContent = character.initialHealth;
             }
             
-            character[stat] = value;
-            document.getElementById(`${stat}-value`).textContent = value;
+            // Mutasd a kocka animációt
+            showDiceAnimation(statElement, rolls);
+            
+            // Állítsd be az értéket
+            setTimeout(() => {
+                character[stat] = value;
+                statElement.textContent = value;
+            }, 1600);
         }
         
         function generateCharacter() {
-            rollStat('agility');
-            rollStat('health');
-            rollStat('luck');
+            // Animate all stats sequentially
+            const stats = ['agility', 'health', 'luck'];
+            let index = 0;
             
-            alert('Karaktered elkészült! Ügyesség: ' + character.agility + 
-                  ', Életerő: ' + character.health + 
-                  ', Szerencse: ' + character.luck);
+            function rollNextStat() {
+                if (index < stats.length) {
+                    rollStat(stats[index]);
+                    index++;
+                    setTimeout(rollNextStat, 1800);
+                } else {
+                    // Értesítés
+                    setTimeout(() => {
+                        const notification = document.createElement('div');
+                        notification.className = 'notification';
+                        notification.innerHTML = `
+                            <i class="fas fa-check-circle"></i>
+                            <span>Karaktered elkészült!</span>
+                            <br>
+                            <small>Ügyesség: ${character.agility}, Életerő: ${character.health}, Szerencse: ${character.luck}</small>
+                        `;
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    }, 1000);
+                }
+            }
+            
+            rollNextStat();
         }
         
         function resetCharacter() {
-            character = {
-                agility: 0,
-                health: 0,
-                luck: 0,
-                initialHealth: 0,
-                potion: null
-            };
+            // Animate reset with dice roll animation
+            const stats = ['agility', 'health', 'luck', 'initial-health'];
+            let index = 0;
             
-            document.getElementById('agility-value').textContent = '0';
-            document.getElementById('health-value').textContent = '0';
-            document.getElementById('luck-value').textContent = '0';
-            document.getElementById('initial-health-value').textContent = '0';
-            document.getElementById('dice1').textContent = '-';
-            document.getElementById('dice2').textContent = '-';
-            document.getElementById('potion-selection').textContent = '';
+            function resetNextStat() {
+                if (index < stats.length) {
+                    const stat = stats[index];
+                    const element = document.getElementById(`${stat.replace('-', '-')}-value`);
+                    
+                    // Animáció a törléshez
+                    element.style.animation = 'diceRollReverse 0.8s ease-out';
+                    setTimeout(() => {
+                        element.textContent = '0';
+                        element.style.animation = '';
+                        index++;
+                        setTimeout(resetNextStat, 300);
+                    }, 800);
+                } else {
+                    character = {
+                        agility: 0,
+                        health: 0,
+                        luck: 0,
+                        initialHealth: 0,
+                        potion: null
+                    };
+                    
+                    document.getElementById('potion-selection').textContent = '';
+                    
+                    // Varázsital gombok visszaállítása
+                    document.querySelectorAll('.potion-btn').forEach(btn => {
+                        btn.classList.remove('selected');
+                    });
+                }
+            }
+            
+            resetNextStat();
         }
         
         function selectPotion(type) {
@@ -176,6 +312,12 @@
             
             character.potion = type;
             document.getElementById('potion-selection').textContent = `Kiválasztva: ${potionNames[type]}`;
+            
+            // Gombok kiemelése
+            document.querySelectorAll('.potion-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
         }
         
         function startAdventure() {
@@ -189,8 +331,38 @@
                 return;
             }
             
-            alert('Sikeresen elindultál a kalandra! Bátorságodat és eszedet fogja próbára tenni az Ítélet Labirintusa.');
+            // Animáció az induláshoz
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-dice fa-spin"></i> Indítás...';
+            button.disabled = true;
+            
+            // Animáció az induláshoz
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Átirányítás a játékhoz (ideiglenesen csak üzenet)
+                const notification = document.createElement('div');
+                notification.className = 'notification success';
+                notification.innerHTML = `
+                    <i class="fas fa-flag"></i>
+                    <span>Sikeresen elindultál a kalandra!</span>
+                    <br>
+                    <small>Bátorságodat és eszedet fogja próbára tenni az Ítélet Labirintusa.</small>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 4000);
+            }, 1500);
         }
+        
+        // Alap karakter generálás oldal betöltésekor
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(generateCharacter, 1000);
+        });
     </script>
 </body>
 </html>
