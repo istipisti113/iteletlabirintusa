@@ -2,3 +2,30 @@
             <p>Ítélet Labirintusa - Kalandjáték | Készítette: A Kaland Szerelmesei</p>
             <p>Ez egy nem hivatalos, gyakorlási célú webes változata a klasszikus kalandjátékoknak.</p>
         </footer>
+        <style>
+            /* Lábléc */
+.main-footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+    border-top: 2px solid var(--dark-blood);
+    font-size: 1rem;
+    color: var(--ghost-gray);
+    background: rgba(10, 10, 10, 0.9);
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
+}
+
+        </style>

@@ -82,209 +82,6 @@ body {
     padding: 0 20px;
 }
 
-/* HEADER */
-.main-header {
-    background: transparent;
-    padding: 0;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    border: none;
-    box-shadow: none;
-    width: 100%;
-}
-
-.main-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--blood-glow), transparent);
-    animation: bloodPulse 3s infinite;
-}
-
-@keyframes bloodPulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-}
-
-.candle-light {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 25px;
-    height: 35px;
-    background: radial-gradient(circle, var(--blood-glow) 0%, transparent 70%);
-    filter: blur(6px);
-    animation: flicker 2s infinite alternate;
-    z-index: 10;
-}
-
-@keyframes flicker {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.1); }
-}
-
-.header-content {
-    text-align: center;
-    padding: 60px 0 40px 0;
-    background: transparent;
-    position: relative;
-    width: 100%;
-}
-
-.header-content::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
-}
-
-.header-content .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.main-title {
-    font-size: 4rem;
-    font-weight: 800;
-    color: var(--blood-red);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.8);
-    letter-spacing: 4px;
-    font-family: 'UnifrakturMaguntia', cursive;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.main-title::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 400px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--blood-glow), transparent);
-}
-
-.subtitle {
-    font-size: 1.5rem;
-    color: var(--ghost-gray);
-    margin-bottom: 25px;
-    font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-    letter-spacing: 2px;
-}
-
-.intro {
-    font-size: 1.1rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-    color: var(--ghost-gray);
-    line-height: 1.7;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    padding: 0 15px;
-}
-
-.main-nav {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 25px 0;
-    background: transparent;
-    position: relative;
-    width: 100%;
-    margin: 0;
-}
-
-.main-nav::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
-}
-
-.main-nav .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 18px 30px;
-    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
-    color: var(--bone-white);
-    text-decoration: none;
-    border: 2px solid var(--blood-red);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    min-width: 150px;
-    position: relative;
-    overflow: hidden;
-}
-
-.nav-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
-    transition: left 0.6s ease;
-}
-
-.nav-item:hover::before {
-    left: 100%;
-}
-
-.nav-item:hover {
-    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.7);
-    border-color: var(--blood-glow);
-}
-
-.nav-home {
-    background: linear-gradient(135deg, var(--blood-red), var(--dark-blood));
-    border-color: var(--blood-glow);
-    box-shadow: 0 0 25px rgba(139, 0, 0, 0.5);
-}
-
-.nav-home:hover {
-    background: linear-gradient(135deg, var(--blood-glow), var(--blood-red));
-    box-shadow: 0 0 40px rgba(255, 0, 0, 0.8);
-}
-
-.nav-icon {
-    font-size: 1.8rem;
-    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
-}
-
-.nav-label {
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
-    letter-spacing: 1.5px;
-}
-
 /* FŐ TARTALOM - KÉT OSZLOP */
 .main-content {
     display: flex;
@@ -367,7 +164,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 200px;
+    height: 250px;
     position: relative;
     overflow: visible;
 }
@@ -394,25 +191,30 @@ body {
     width: 100%;
 }
 
-.stat-value {
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: var(--blood-red);
-    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
-    margin: 10px 0;
-    font-family: 'MedievalSharp', cursive;
-    line-height: 1;
-    height: 100px;
+/* Kocka konténer */
+.dice-value-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100%;
-    animation: pulse 2s infinite;
+    margin: 15px 0;
+    height: 100px;
+    align-items: center;
 }
 
-@keyframes pulse {
-    0%, 100% { text-shadow: 0 0 20px rgba(255, 0, 0, 0.8); }
-    50% { text-shadow: 0 0 30px rgba(255, 0, 0, 1); }
+.dice {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--blood-red);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--blood-red);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    transition: all 0.3s ease;
 }
 
 @keyframes diceRoll {
@@ -459,20 +261,6 @@ body {
         transform: rotate(0deg) scale(1); 
         opacity: 1;
     }
-}
-
-/* Kocka stílusok az animációhoz */
-.dice-rolling {
-    background: linear-gradient(135deg, var(--dark-blood), var(--black-blood));
-    border-radius: 10px;
-    border: 2px solid var(--blood-red);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    color: var(--blood-red);
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #kezdetiala {
@@ -568,6 +356,19 @@ body {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 1), 0 0 20px rgba(255, 255, 0, 1);
 }
 
+/* Középre igazított gomb konténer */
+.centered-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.start-adventure-btn {
+    min-width: 300px;
+    text-align: center;
+}
+
 /* Felszerelés */
 .inventory {
     display: grid;
@@ -656,31 +457,6 @@ body {
     width: 100%;
 }
 
-/* Lábléc */
-.main-footer {
-    text-align: center;
-    padding: 30px;
-    margin-top: 50px;
-    border-top: 2px solid var(--dark-blood);
-    font-size: 1rem;
-    color: var(--ghost-gray);
-    background: rgba(10, 10, 10, 0.9);
-    border-radius: 5px;
-    font-family: 'Cinzel', serif;
-    position: relative;
-    overflow: hidden;
-}
-
-.main-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
-}
-
 /* Értesítések */
 .notification {
     position: fixed;
@@ -730,54 +506,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .main-header {
-        margin-bottom: 20px;
-    }
-    
-    .header-content {
-        padding: 40px 0 30px 0;
-    }
-    
-    .main-title {
-        font-size: 2.5rem;
-        letter-spacing: 3px;
-    }
-    
-    .main-title::after {
-        width: 250px;
-    }
-    
-    .subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .intro {
-        font-size: 1rem;
-    }
-    
-    .main-nav {
-        padding: 20px 0;
-    }
-    
-    .main-nav .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        padding: 0 15px;
-    }
-    
-    .nav-item {
-        width: 220px;
-        flex-direction: row;
-        justify-content: center;
-        padding: 15px 25px;
-    }
-    
-    .candle-light {
-        top: 20px;
-        right: 20px;
-    }
-    
     .main-content {
         flex-direction: column;
         align-items: center;
@@ -793,12 +521,13 @@ body {
     }
     
     .stat {
-        height: 180px;
+        height: 250px;
     }
     
-    .stat-value {
-        font-size: 3rem;
-        height: 80px;
+    .dice {
+        width: 70px;
+        height: 70px;
+        font-size: 2.2rem;
     }
     
     .btn {
@@ -808,31 +537,26 @@ body {
         padding: 14px 20px;
     }
     
+    .start-adventure-btn {
+        min-width: 250px;
+    }
+    
     .inventory {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 }
 
 @media (max-width: 480px) {
-    .main-title {
+    .dice {
+        width: 60px;
+        height: 60px;
         font-size: 2rem;
     }
     
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    .intro {
-        font-size: 0.9rem;
-    }
-    
-    .nav-item {
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    .stat-value {
-        font-size: 2.5rem;
+    .start-adventure-btn {
+        min-width: 200px;
+        font-size: 1.1rem;
+        padding: 15px 20px;
     }
     
     .inventory {
