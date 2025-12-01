@@ -34,9 +34,10 @@
     
     <div class="container">
         <div id="header">
-            <script>loadPage("/header", "header")</script>
+            <script>
+                loadPageAddClass("/header", "header", "home")
+            </script>
         </div>
-        <script>document.getElementById("fooldal").classList.add("nav-home")</script>
 
         <main class="main-content">
             <!-- Bal oldal: Karakter -->
@@ -290,6 +291,7 @@
                 
                 setTimeout(() => {
                     notification.remove();
+                    window.location.href="/card/1"
                 }, 4000);
             }, 1500);
         }
