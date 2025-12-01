@@ -355,6 +355,10 @@ body {
     justify-content: space-between;
     height: 200px; /* FIX MAGASSÁG */
 }
+.stat:nth-child(odd),.stat:nth-child(even) {
+    grid-column: span 2;
+}
+
 
 .stat:hover {
     background: rgba(139, 0, 0, 0.3);
@@ -370,11 +374,14 @@ body {
     margin: 0;
     font-family: 'MedievalSharp', cursive;
     line-height: 1;
-    height: 70px; /* FIX MAGASSÁG A SZÁMOKNAK */
+    height: 100px; /* FIX MAGASSÁG A SZÁMOKNAK */
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+#kezdetiala{
+    display: none;
 }
 
 .stat-name {
@@ -386,7 +393,7 @@ body {
     letter-spacing: 0.5px;
     text-align: center;
     font-family: 'Cinzel', serif;
-    height: 40px; /* FIX MAGASSÁG A NEVEKNEK */
+    height: 20px; /* FIX MAGASSÁG A NEVEKNEK */
     display: flex;
     align-items: center;
     justify-content: center;
