@@ -19,21 +19,22 @@ async fn main() {
     let css = warp::path("index.css").and(warp::fs::file("html/index.css"));
     let home = warp::path::end().map(|| warp::reply::html(fs::read_to_string("html/index.html").unwrap()));
     let help = warp::path::end().map(|| warp::reply::html(fs::read_to_string("html/help.html").unwrap()));
-    let leiras = warp::path("leiras").map(move || warp::reply::html("a".replace("a", &h2(&jatekleiras))));
+    let leiras = warp::path("leiras").map(move || warp::reply::html("a".replace("a", &h3(&jatekleiras))));
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &hattertortenet
         .replace("==============", "<br>==============<br>")))));
     let tortenet = warp::path("tortenet").map(move || warp::reply::html(fs::read_to_string("html/hattertortenet.html").unwrap()));
+    let szabalyok = warp::path("szabalyok").map(||warp::reply::html(fs::read_to_string("html/szabalyok.html").unwrap()));
     let cards = warp::path!("card"/ usize).map(move |card: usize|
         warp::reply::html(cards[card].clone())
     );
 
 
-    let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras)
+    let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok)
     .or(script).or(css);
     warp::serve(routes).run(([0,0,0,0], port)).await;
 }
 
-fn h2(szoveg: &str) -> String {
+fn h3(szoveg: &str) -> String {
     let mut returning  = String::from(szoveg).split("\n").map(|line| String::from(line)).collect::<Vec<String>>();
     for i in 0..returning.iter().count(){
         if returning[i].trim().chars().count()==0{continue;}
