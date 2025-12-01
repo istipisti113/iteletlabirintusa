@@ -1,6 +1,9 @@
 #![recursion_limit = "256"]
+use serde::de::value::Error;
 use warp::{filters::path::param, reply::{Reply, Response}, Filter};
+use core::num;
 use std::{collections::HashMap, fs, string, sync::OnceLock};
+use regex::Regex;
 
 #[tokio::main]
 async fn main() {
@@ -26,9 +29,10 @@ async fn main() {
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &h3(&hattertortenet)))));
     let tortenet = warp::path("tortenet").map(move || warp::reply::html(fs::read_to_string("html/hattertortenet.html").unwrap()));
     let szabalyok = warp::path("szabalyok").map(||warp::reply::html(fs::read_to_string("html/szabalyok.html").unwrap()));
-    let cards = warp::path!("card"/ usize).map(move |card: usize|
+    let cards = warp::path!("card"/ usize).map(move |card: usize| {
+        println!("{}", searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().join(", "));
         warp::reply::html(cards[card].clone())
-    );
+    });
 
 
     let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok)
@@ -49,4 +53,16 @@ fn h3(szoveg: &str) -> String {
         }
     }
     returning.join("")
+}
+
+fn searchForNumber(szoveg: &str) -> Result<Vec<i32>, String>{
+    let re = Regex::new(r"(\d{1,3})-r").unwrap();
+    if let Some(nums) = re.captures(szoveg){
+        let numbers = nums.iter().map(|num| {
+            num.unwrap().as_str().parse::<i32>().unwrap()
+        }).collect::<Vec<i32>>();
+        Ok(numbers)
+    } else {
+        return  Err("No path found".to_string());
+    }
 }
