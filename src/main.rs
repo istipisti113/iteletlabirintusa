@@ -19,8 +19,7 @@ async fn main() {
     let css = warp::path("index.css").and(warp::fs::file("html/index.css"));
     let home = warp::path::end().map(|| warp::reply::html(fs::read_to_string("html/index.html").unwrap()));
     let help = warp::path::end().map(|| warp::reply::html(fs::read_to_string("html/help.html").unwrap()));
-    let leiras = warp::path("leiras").map(move || warp::reply::html("a".replace("a", &jatekleiras
-        .replace("\n", "<br>"))));
+    let leiras = warp::path("leiras").map(move || warp::reply::html("a".replace("a", &h2(&jatekleiras))));
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &hattertortenet
         .replace("==============", "<br>==============<br>")))));
     let tortenet = warp::path("tortenet").map(move || warp::reply::html(fs::read_to_string("html/hattertortenet.html").unwrap()));
@@ -32,4 +31,19 @@ async fn main() {
     let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras)
     .or(script).or(css);
     warp::serve(routes).run(([0,0,0,0], port)).await;
+}
+
+fn h2(szoveg: &str) -> String {
+    let mut returning  = String::from(szoveg).split("\n").map(|line| String::from(line)).collect::<Vec<String>>();
+    for i in 0..returning.iter().count(){
+        if returning[i].trim().chars().count()==0{continue;}
+        if returning[i].trim().chars().all(|c| c == '='){
+            returning[i-1]= String::from("<br><h3>")+&returning[i-1]+"</h3>";
+            returning[i] = String::new();
+        }
+        if !returning[i].is_empty(){
+            returning[i] += "<br>";
+        }
+    }
+    returning.join("")
 }
