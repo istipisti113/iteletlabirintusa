@@ -2,8 +2,30 @@
 use serde::de::value::Error;
 use warp::{filters::path::param, reply::{Reply, Response}, Filter};
 use core::num;
-use std::{collections::HashMap, fs, string, sync::OnceLock};
+use std::{collections::HashMap, fs, iter::Enumerate, string, sync::OnceLock};
 use regex::Regex;
+
+struct Ellenseg {
+    nev: String,
+    ugyesseg: i32,
+    eletero: i32,
+}
+
+enum Potion {
+    Agility,
+    Health,
+    Luck
+}
+
+struct Player {
+    agility: i32,
+    initialagility: i32,
+    health: i32,
+    initialhealth: i32,
+    luck: i32,
+    initialluck:i32,
+    potion: Potion
+}
 
 #[tokio::main]
 async fn main() {
@@ -12,7 +34,7 @@ async fn main() {
     let jatekleiras = splitting[0].clone();
     let hattertortenet = splitting[1].clone();
     let story = splitting[2].clone();
-    let cards = story.split("#").map(|t| String::from(t)).collect::<Vec<String>>();
+    let cards = story.split("#").map(|t| String::from(t.replace("\n", "<br>"))).collect::<Vec<String>>();
 
     //let staticstory: &'static str = Box::leak(Box::new(story));
 
@@ -29,11 +51,28 @@ async fn main() {
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &h3(&hattertortenet)))));
     let tortenet = warp::path("tortenet").map(move || warp::reply::html(fs::read_to_string("html/hattertortenet.html").unwrap()));
     let szabalyok = warp::path("szabalyok").map(||warp::reply::html(fs::read_to_string("html/szabalyok.html").unwrap()));
+    let characterupdate = warp::post().and(warp::path!("character"/i32/i32/i32/i32/String))
+        .map(|agil: i32, health: i32, inithealth: i32, luck: i32, potion: String|{
+
+            warp::reply::html("ok")
+        });
+
     let cards = warp::path!("card"/ usize).map(move |card: usize| {
         println!("{}", searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().join(", "));
-        warp::reply::html(cards[card].clone())
+        let button = fs::read_to_string("html/lapozas.html").unwrap();
+        let buttons = searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().iter().map(|oldal|  {
+            button.replace("OLDAL", &oldal)
+        }).collect::<Vec<String>>().join("<br>");
+        match vaneharc(&cards[card]) {
+            Ok(enemies) => {}
+            Err(e) => {println!("{}",e)}
+        }
+        warp::reply::html(fs::read_to_string("html/kartya.html").unwrap()
+            .replace("SZOVEG", &cards[card])
+            .replace("CARD", &card.to_string())
+            .replace("GOMBOK", &buttons)
+        )
     });
-
 
     let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok)
     .or(script).or(css).or(szabalyokcss).or(header).or(footer);
@@ -57,12 +96,21 @@ fn h3(szoveg: &str) -> String {
 
 fn searchForNumber(szoveg: &str) -> Result<Vec<i32>, String>{
     let re = Regex::new(r"(\d{1,3})-r").unwrap();
-    if let Some(nums) = re.captures(szoveg){
-        let numbers = nums.iter().map(|num| {
-            num.unwrap().as_str().parse::<i32>().unwrap()
-        }).collect::<Vec<i32>>();
-        Ok(numbers)
-    } else {
-        return  Err("No path found".to_string());
+    let mut szamok :Vec<i32> = vec![];
+    for num in re.captures_iter(szoveg){
+        szamok.push(num[1].parse::<i32>().unwrap());
     }
+    if szamok.iter().count()!=0{return Ok(szamok);}
+    return Err("Nincs szam".to_string());
+}
+
+fn vaneharc(szoveg: &str) -> Result<Vec<ellenseg>, String>{
+    let re = Regex::new(r"<br><br>(.*)<br>ÜGYESSÉG (\d{1,2})<br>ÉLETERŐ (\d{1,3})").unwrap();
+    let mut ellensegek: Vec<ellenseg> = vec![];
+    for enemy in re.captures_iter(szoveg){
+        ellensegek.push(ellenseg { nev: enemy[1].to_string(), ugyesseg: enemy[2].to_string().parse::<i32>().unwrap(), eletero: enemy[3].to_string().parse::<i32>().unwrap() });
+        println!("---{}, {}, {}---", &enemy[1], &enemy[2], &enemy[3]);
+    }
+    if ellensegek.iter().count()==0{return Err("nincs harc".to_string());}
+    return Ok(ellensegek);
 }

@@ -289,6 +289,7 @@
                 `;
                 document.body.appendChild(notification);
                 
+                fetch("/character/"+character.agility+"/"+character.health+"/"+character.initialHealth+"/"+character.luck+"/"+character.potion)
                 setTimeout(() => {
                     notification.remove();
                     window.location.href="/card/1"
