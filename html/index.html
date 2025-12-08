@@ -289,10 +289,9 @@
                 `;
                 document.body.appendChild(notification);
                 
-                fetch("/character/"+character.agility+"/"+character.health+"/"+character.initialHealth+"/"+character.luck+"/"+character.potion)
                 setTimeout(() => {
                     notification.remove();
-                    window.location.href="/card/1"
+                    window.location.href="/jatek/"+character.agility+"/"+character.health+"/"+character.luck+"/"+character.potion
                 }, 4000);
             }, 1500);
         }

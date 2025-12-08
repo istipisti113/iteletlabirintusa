@@ -51,10 +51,15 @@ async fn main() {
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &h3(&hattertortenet)))));
     let tortenet = warp::path("tortenet").map(move || warp::reply::html(fs::read_to_string("html/hattertortenet.html").unwrap()));
     let szabalyok = warp::path("szabalyok").map(||warp::reply::html(fs::read_to_string("html/szabalyok.html").unwrap()));
-    let characterupdate = warp::post().and(warp::path!("character"/i32/i32/i32/i32/String))
-        .map(|agil: i32, health: i32, inithealth: i32, luck: i32, potion: String|{
-
-            warp::reply::html("ok")
+    //let jatek = warp::path("jatek").map(|| warp::reply::html(fs::read_to_string("html/jatek.html").unwrap()));
+    let jatek = warp::path!("jatek"/i32/i32/i32/String)
+        .map(|agil: i32, health: i32, luck: i32, potion: String|{
+            warp::reply::html(fs::read_to_string("html/jatek.html").unwrap()
+                .replace("AGILITY", &agil.to_string())
+                .replace("LUCK", &luck.to_string())
+                .replace("HEALTH", &health.to_string())
+                .replace("POTION", &potion)
+            )
         });
 
     let cards = warp::path!("card"/ usize).map(move |card: usize| {
@@ -69,12 +74,12 @@ async fn main() {
         }
         warp::reply::html(fs::read_to_string("html/kartya.html").unwrap()
             .replace("SZOVEG", &cards[card])
-            .replace("CARD", &card.to_string())
+            .replace(&(card.to_string()+"<br>"), &("<h2>".to_string()+&card.to_string()+"</h2>"))
             .replace("GOMBOK", &buttons)
         )
     });
 
-    let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok)
+    let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok).or(jatek)
     .or(script).or(css).or(szabalyokcss).or(header).or(footer);
     warp::serve(routes).run(([0,0,0,0], port)).await;
 }
@@ -104,11 +109,11 @@ fn searchForNumber(szoveg: &str) -> Result<Vec<i32>, String>{
     return Err("Nincs szam".to_string());
 }
 
-fn vaneharc(szoveg: &str) -> Result<Vec<ellenseg>, String>{
+fn vaneharc(szoveg: &str) -> Result<Vec<Ellenseg>, String>{
     let re = Regex::new(r"<br><br>(.*)<br>ÜGYESSÉG (\d{1,2})<br>ÉLETERŐ (\d{1,3})").unwrap();
-    let mut ellensegek: Vec<ellenseg> = vec![];
+    let mut ellensegek: Vec<Ellenseg> = vec![];
     for enemy in re.captures_iter(szoveg){
-        ellensegek.push(ellenseg { nev: enemy[1].to_string(), ugyesseg: enemy[2].to_string().parse::<i32>().unwrap(), eletero: enemy[3].to_string().parse::<i32>().unwrap() });
+        ellensegek.push(Ellenseg { nev: enemy[1].to_string(), ugyesseg: enemy[2].to_string().parse::<i32>().unwrap(), eletero: enemy[3].to_string().parse::<i32>().unwrap() });
         println!("---{}, {}, {}---", &enemy[1], &enemy[2], &enemy[3]);
     }
     if ellensegek.iter().count()==0{return Err("nincs harc".to_string());}
