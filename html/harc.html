@@ -1,33 +1,43 @@
 <div class="harc" style="z-index: ZINDEX;">
-    <h2>NAME</h2>
-    <table style="text-align: center;">
-        <thead>
-            <tr>
-                <td>szörny</td>
-                <td>asdfsadf</td>
-                <td>jatekos</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><p>AGILITY</p></td>
-                <td> Ügyesség </td>
-                <td><p>AGILITY</p></td>
-            </tr>
-            <tr>
-                <td><p>HEALTH</p></td>
-                <td> Életerő </td>
-                <td><p>HEALTH</p></td>
-            </tr>
-            <tr>
-                <td><p>LUCK</p></td>
-                <td> Szerencse </td>
-                <td><p>LUCK</p></td>
-            </tr>
-        </tbody>
+  <h2>harc</h2>
+  <div style="width: 400px; height: 200px; display:block; left: calc(50% - 150px); top: calc(50% - 100px); position: absolute;">
+    <table style="text-align: center; width: 300px; height: 200px">
+      <thead>
+        <tr>
+          <td></td>
+          <td id="ename">szörny</td>
+          <td></td>
+          <td id="pname">jatekos</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td><p id="eagility"></p></td>
+          <td> Ügyesség </td>
+          <td><p id="pagility"></p></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td id="edamage" style="color: red; min-width: 30px;"></td>
+          <td><p id="ehealth"></p></td>
+          <td> Életerő </td>
+          <td><p id="phealth"></p></td>
+          <td id="pdamage" style="color: red; min-width: 30px;"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><p>----</p></td>
+          <td> Szerencse </td>
+          <td><p id="luck"></p></td>
+          <td></td>
+        </tr>
+      </tbody>
     </table>
-    <button>ütés</button>
-    <script>
-        
-    </script>
+    <button id="korinditas" onclick="">kovetkezo kor</button>
+    <button id="szerencsehasznalat">szerencse hasznalata</button>
+    <button id="bezaras" disabled=true onclick="document.getElementById('harc').remove()">Csata megnyerve</button>
+    <button id="menkules" disabled=true>Menekülés</button>
+  </div>
 </div>

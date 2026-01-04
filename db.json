@@ -140,6 +140,10 @@
   "139":{
     "eletero":"+1"
   },
+  "140":{
+    "menekules":"true",
+    "irany":"80"
+  },
   "143":{
     "vane":"bronz_kulcs",
     "irany":"70-106"
@@ -152,10 +156,11 @@
     "irany":"103-15"
   },
   "153":{
-    "sebzes":"3"
+    "sebzesbonusz":"1"
   },
   "155":{
-    "menekules":"true"
+    "menekules":"true",
+    "irany":"143"
   },
   "156":{
     "item":"-2 elelem",
@@ -226,8 +231,5 @@
   },
   "200":{
     "nyert":"true"
-  },
-  "asdf":{
-    "hello":"world"
   }
 }

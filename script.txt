@@ -34,8 +34,7 @@ A harc menete
 1.Dobj két dobókockával a teremtmény nevében. A kapott számot add az ő ÜGYESSEG pontjaihoz. Az összeg az Ő TÁMADÓEREJE.
 2.Dobj két kockával most a magad nevében, és add az eredményt saját jelenlegi ÜGYESSÉG pontjaidhoz. Ez a te TÁMADÓERŐD.
 3.Ha a te TÁMADÓEROD nagyobb, mint a teremtményé, akivel küzdesz, megsebezted. Lépj tovább a 4. lépésre. Ha a teremtmény TÁMADÓEREJE nagyobb, ö sebzett meg téged, és haladj az 5. lépésre. Ha a két TAMADÓERŐ egyforma, kivédtétek egymás csapását, és a következő Fordulót az 1. lépéstől elölről kezditek.
-4.Megsebezted a teremtményt, ezért vonjál le 2 pontot ÉLETEREJÉBŐL. Felhasználhatod SZERENCSÉDET is, hogy további sebeket
-ejts rajta (lásd odébb).
+4.Megsebezted a teremtményt, ezért vonjál le 2 pontot ÉLETEREJÉBŐL. Felhasználhatod SZERENCSÉDET is, hogy további sebeket ejts rajta (lásd odébb).
 5.A teremtmény sebzett meg téged, ezért vonjál le 2 pontot saját ÉLETERÖDBŎL. De ilyenkor is lehet SZERENCSÉD (lásd odébb).
 6. Végezd el a szükséges módosításokat mind saját, mind pedig ellenfeled ÉLETEREJÉBEN (és SZERENCSÉJÉBEN, amennyiben ez szükséges).
 7.Kezdd el a következő fordulót meglévő UGYESSÉG pontjaid alapján, azaz ismételd meg a lépéseket 1-6-ig. Addig játszhatsz, amíg vagy a te, vagy a teremtmény ÉLETERŐ pontjai nem fogynak el (halál).
@@ -48,7 +47,7 @@ Ha egynél több lénnyel kerülnél egyszerre összeütközésbe, mindig közö
 
 SZERENCSE
 Kalandjaid során, akár csatában, akár olyan helyzetekben, amikor a SZERENCSE dönthet sorsod alakulásában (az erre vonatkozó utasítást az adott fejezetpontok alatt megkapod), a SZERENCSÉDRE is számíthatsz, hogy az események kimenetele számodra kedvező legyen. De vigyázz! A SZERENCSÉRE számítani kockázatos, és ha balszerencsés vagy, az eredmény végzetes lehet.
-SZERENCSÉDET a következő módon teheted próbára. Dobj két kockával. Ha a kapott szám nem nagyobb, mint a jelenlegi SzERENCSE pontszámod, az eredmény kedvező. Ha magasabb számot dobsz, mint a jelenlegi SZERENCSE pontszámod, balszerencséd volt, és vállalnod kell a következményeit.
+SZERENCSÉDET a következő módon teheted próbára. Dobj két kockával. Ha a kapott szám nem nagyobb, mint a jelenlegi SZERENCSE pontszámod, az eredmény kedvező. Ha magasabb számot dobsz, mint a jelenlegi SZERENCSE pontszámod, balszerencséd volt, és vállalnod kell a következményeit.
 Úgy hívjuk ezt, hogy Tedd próbára SZERENCSÉD. Minden alkalommal, amikor próbára teszed SZERENCSÉDET, 1 pontot le kell vonnod SZERENCSE pontszámodból. Így hamar rájössz, hogy a SZERENCSÉRE hagyatkozni kockázatos.
 
 A SZERENCSE használata csatában
@@ -97,7 +96,7 @@ Egyből előre rontasz, hogy elkapd a gyilkost, ám pechedre megbotlasz, az alja
 Csak állsz, és a halott Elf tetemét bámulod. Amennyire meg tudod állapítani, az egyik helyi törzs vezetője lehetett. Kezében egy nagy, kék színű gyémántot szorongat. Hirtelen megrezzennek körülötted a bokrok! Arra gondolsz, talán a Goblin tért vissza, így előhúzod kardodat. Legnagyobb meglepetésedre azonban húsz vagy harminc Elf gyűrűjében találod magadat, akik megfeszített íjakkal vesznek körbe. Egyikük előre lép, és komoran megszólít.
 
 - Ember! - kezdi. - Karddal a kezedben, apám, a Törzsfőnökünk meggyilkolt testével a lábad előtt találtunk rád.
-Rájössz, hogy ezek azt hiszik, te vagy a gyilkos. Tiltakozni próbálnál, azonban az Elf egy intésére elhallgatsz. Az ítélet Labirintusához viszünk fejezi be mondanivalóját. Hátat fordít neked, és elsétál, te pedig kísérőid körében kénytelen vagy követni. Miközben az örök egymás közt vitatják meg a látottakat, megtudod, hogy a labirintus egy titkos hely, ahol a bűnösöket teszik próbára. Minden ..próba" előtt egy kis Aranyszobrot rejtenek el annak mélyén, a próba alanyának pedig meg kell találnia azt. Ha ez nem sikerül, bünösnek ítélik, ám ha rálel, és sikerül kijuttatnia odabentről, ártatlannak találják, és szabadon engedik.
+Rájössz, hogy ezek azt hiszik, te vagy a gyilkos. Tiltakozni próbálnál, azonban az Elf egy intésére elhallgatsz. Az ítélet Labirintusához viszünk fejezi be mondanivalóját. Hátat fordít neked, és elsétál, te pedig kísérőid körében kénytelen vagy követni. Miközben az örök egymás közt vitatják meg a látottakat, megtudod, hogy a labirintus egy titkos hely, ahol a bűnösöket teszik próbára. Minden "próba" előtt egy kis Aranyszobrot rejtenek el annak mélyén, a próba alanyának pedig meg kell találnia azt. Ha ez nem sikerül, bünösnek ítélik, ám ha rálel, és sikerül kijuttatnia odabentről, ártatlannak találják, és szabadon engedik.
 A fak ritkulni kezdenek, a menet pedig egy hatalmas fa törzsénél megtorpan. A Főnök fia motyog pár szót, mire a kéreg egy része kinyílik, mögötte pedig feltűnik a labirintus bejárata...
 
 ------------------------------------------
@@ -459,7 +458,7 @@ Első Ork
 ÉLETERŐ 6
 
 Második Ork
-UGYESSÉG 6
+ÜGYESSÉG 6
 ÉLETERŐ 5
 
 Ha legyőzöd ellenfeleidet, lapozz a 198-ra.

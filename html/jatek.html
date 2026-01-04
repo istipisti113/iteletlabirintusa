@@ -4,111 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ítelet labirintusa</title>
+    <link rel="stylesheet" href="/index.css">
     <script src="/script.js"></script>
     <script src="/jatek.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Eater&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=MedievalSharp&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script src="scroll-animations.js"></script>
   </head>
   <body>
+    <div class="blood-drips"></div>
+    <div class="floating-skulls"></div>
+    <div class="dark-mist"></div>
     <script>
-var initagility = AGILITY
-var inithealth = HEALTH
-var initluck = LUCK
-var agility = AGILITY
-var health = HEALTH
-var luck = LUCK
-//var potion = "POTION"
-var enemies
-var items = {"POTION_potion":1}
-var hasznalat = []
-
-var segedfile
-function loadsegedfile(){
-  fetch("/segedfile").then(resp => resp.json()).then(dat=>{
-    segedfile=JSON.parse(dat)
-  })
-  console.log("segedfile")
-  return
-}
-loadsegedfile()
-
-function dobas(){
-  return Math.random()*5+1
-}
-
-function szerencseproba(){
-  var osszeg = dobas()+dobas()
-  if (osszeg<=luck){return true}
-  else {return false}
-}
-
-function harc(){
-
-}
-
-function loadCard(page, id, cardid) {
-  fetch(page)
-    .then(response => response.text())
-    .then(data => document.getElementById(id).innerHTML = data)
-    .then(a => loadsegedfile())
-    .then(b => newcard(cardid))
-}
-
-async function newcard(id){
-  if (typeof segedfile[id] === 'undefined'){
-    return
-  }
-  if (typeof segedfile[id].item !== 'undefined'){
-    var splitted = segedfile[id].item.split(" ")
-    var op = splitted[0]
-    var item = splitted[1]
-    if (op[0]=='+'){
-      if (typeof items[item] === 'undefined'){
-        items[item]=0
-      }
-      items[item]=Number(op.slice(1))
-    }
-  } if (typeof segedfile[id].eletero !== "undefined"){
-    var adding
-    if (segedfile[id].eletero.slice(1) === "d"){
-      adding = dobas()
-    } else {
-      adding = Number(segedfile[id].eletero.slice(1))
-    }
-    if (segedfile[id].eletero[0]=="+"){
-      health+=adding
-    } else {
-      health-=adding
-    }
-  } if (typeof segedfile[id].szerencse !== "undefined"){
-    if (segedfile[id].szerencse == "proba"){
-      document.getElementById(segedfile[id].irany.split("-")[0]).disabled = true
-      document.getElementById(segedfile[id].irany.split("-")[1]).disabled = true
-      //animacio vagy valami
-      if (szerencseproba()){
-        document.getElementById(segedfile[id].irany.split("-")[0]).disabled = false
-      } else {
-        document.getElementById(segedfile[id].irany.split("-")[1]).disabled = false
-      }
-    } else {
-      var adding
-      //if (segedfile[id].szerencse.slice(1) === "d"){
-      //  adding = dobas()
-      //} else {
-      //}
-      adding = Number(segedfile[id].szerencse.slice(1))
-      if (segedfile[id].szerencse[0]=="+"){
-        health+=adding
-      } else {
-        health-=adding
-      }
-    }
-  }
-}
-
-</script>
+      var initagility = AGILITY
+      var agility = AGILITY
+      var inithealth = HEALTH
+      var health = HEALTH
+      var initluck = LUCK
+      var luck = LUCK
+      //var potion = "POTION"
+      var enemies
+      var items = {"POTION_potion":1}
+      var hasznalat = []
+    </script>
     <div id="card">
       <script>
         loadPage("/card/1", "card")
       </script>
     </div>
+    <div id="ui">
+      <p id="health">HEALTH</p>
+      <p id="agility">AGILITY</p>
+      <p id="luck">LUCK</p>
+    </div>
+    <div id="footer">
+      <script>loadPage("/footer", "footer")</script>
+    </div>
   </body>
+
+  <style>
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  #ui{
+    width: 300px;
+    text-align: center;
+    margin: 5px;
+  }
+
+  #content {
+    margin: 5px;
+    width: 900px;
+    padding: 20px;
+    /*background-color: rgb(160, 160, 160);
+    */
+  }
+
+  .harc {
+    padding: 10px;
+    display:block;
+    width: 500px;
+    left: calc(50% - 250px);
+    height: 400px;
+    top: calc(50% - 200px);
+    position: absolute;
+    background-color: green;
+  }
+  </style>
 </html>

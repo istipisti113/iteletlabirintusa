@@ -68,17 +68,24 @@ async fn main() {
             )
         });
 
-    let cards = warp::path!("card"/ usize).map(move |card: usize| {
+    let cardspath = warp::path!("card"/ usize).map(move |card: usize| {
         //println!("{}", searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().join(", "));
         let button = fs::read_to_string("html/lapozas.html").unwrap();
-        let buttons = searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().iter().map(|oldal|  {
+        let mut buttons: String = searchForNumber(&cards[card]).unwrap_or(vec![0]).iter().map(|a| a.to_string()).collect::<Vec<String>>().iter().map(|oldal|  {
             button.replace("OLDAL", &oldal)
         }).collect::<Vec<String>>().join("<br>");
         match vaneharc(&cards[card]) {
             Ok(enemies) => {
-                println!("{}", enemies.iter().count());
+                //println!("{}", enemies.iter().count());
+                buttons = fs::read_to_string("html/harcbutton.html").unwrap().replace("ENEMIES", &( String::from("\'")+ 
+                    &enemies.iter().map(|enemy|{
+                        return String::from(&enemy.nev)+","+ &enemy.ugyesseg.to_string()+","+ &enemy.eletero.to_string();
+                    }).collect::<Vec<String>>().join(";")+"\'")
+                )+ "<br>" + &buttons;
             }
-            Err(e) => {println!("{}",e)}
+            Err(e) => {
+                //println!("{}",e)
+            }
         }
         warp::reply::html(fs::read_to_string("html/kartya.html").unwrap()
             .replace("SZOVEG", &cards[card])
@@ -87,7 +94,7 @@ async fn main() {
         )
     });
 
-    let routes = home.or(help).or(tortenet).or(cards).or(tortenetszoveg).or(leiras).or(szabalyok).or(jatek).or(segedfile).or(jatekscript).or(harc)
+    let routes = home.or(help).or(tortenet).or(cardspath).or(tortenetszoveg).or(leiras).or(szabalyok).or(jatek).or(segedfile).or(jatekscript).or(harc)
     .or(script).or(css).or(szabalyokcss).or(header).or(footer);
     warp::serve(routes).run(([0,0,0,0], port)).await;
 }
@@ -118,10 +125,10 @@ fn searchForNumber(szoveg: &str) -> Result<Vec<i32>, String>{
 }
 
 fn vaneharc(szoveg: &str) -> Result<Vec<Ellenseg>, String>{
-    let re = Regex::new(r"<br>(.*)<br>ÜGYESSÉG (\d{1,2})<br>ÉLETERŐ (\d{1,3})").unwrap();
+    //let re = Regex::new(r"<br><br>(.*)<br>ÜGYESSÉG (\d{1,2})<br>ÉLETERŐ (\d{1,3})").unwrap();
+    let re = Regex::new(r"<br><br>(?s)(.+?)<br>\s*ÜGYESSÉG\s*(\d+)<br>\s*ÉLETERŐ\s*(\d+)").unwrap();
     let mut ellensegek: Vec<Ellenseg> = vec![];
     for enemy in re.captures_iter(szoveg){
-        println!("asdsadf");
         ellensegek.push(Ellenseg { nev: enemy[1].to_string(), ugyesseg: enemy[2].to_string().parse::<i32>().unwrap(), eletero: enemy[3].to_string().parse::<i32>().unwrap() });
         //println!("---{}, {}, {}---", &enemy[1], &enemy[2], &enemy[3]);
     }
