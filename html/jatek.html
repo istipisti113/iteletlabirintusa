@@ -1,22 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ítelet labirintusa</title>
     <script src="/script.js"></script>
-</head>
-<body>
+    <script src="/jatek.js"></script>
+  </head>
+  <body>
     <script>
-        var initagility = AGILITY
-        var inithealth = HEALTH
-        var initluck = LUCK
-        var potion = "POTION"
-    </script>
+var initagility = AGILITY
+var inithealth = HEALTH
+var initluck = LUCK
+var agility = AGILITY
+var health = HEALTH
+var luck = LUCK
+//var potion = "POTION"
+var enemies
+var items = {"POTION_potion":1}
+var hasznalat = []
+
+var segedfile
+function loadsegedfile(){
+  fetch("/segedfile").then(resp => resp.json()).then(dat=>{
+    segedfile=JSON.parse(dat)
+  })
+  console.log("segedfile")
+  return
+}
+loadsegedfile()
+
+function dobas(){
+  return Math.random()*5+1
+}
+
+function szerencseproba(){
+  var osszeg = dobas()+dobas()
+  if (osszeg<=luck){return true}
+  else {return false}
+}
+
+function loadCard(page, id, cardid) {
+  fetch(page)
+    .then(response => response.text())
+    .then(data => document.getElementById(id).innerHTML = data)
+    .then(a => loadsegedfile())
+    .then(b => newcard(cardid))
+}
+
+async function newcard(id){
+  if (typeof segedfile[id] === 'undefined'){
+    console.log("segedfile[id] undefined")
+  }
+  if (typeof segedfile[id].item !== 'undefined'){
+    var splitted = segedfile[id].item.split(" ")
+    var op = splitted[0]
+    var item = splitted[1]
+    if (op[0]=='+'){
+      if (typeof items[item] === 'undefined'){
+        items[item]=0
+      }
+      items[item]=Number(op.slice(1))
+    }
+  } if (typeof segedfile[id].eletero !== "undefined"){
+    if (segedfile[id].eletero[0]=="+"){
+      var adding
+      if (segedfile[id].eletero.slice(1) === "d"){
+        adding = dobas()
+      } else {
+        adding = Number(segedfile[id].eletero.slice(1))
+      }
+      health+=adding
+    }
+  } if (typeof segedfile[id].szerencse !== "undefined"){
+    if (segedfile[id].szerencse == "proba"){
+      document.getElementById(segedfile[id].irany.split("-")[0]).disabled = true
+      document.getElementById(segedfile[id].irany.split("-")[1]).disabled = true
+      if (szerencseproba()){
+
+      }
+    }
+  }
+}
+
+</script>
     <div id="card">
-    <script>
+      <script>
         loadPage("/card/1", "card")
-    </script>
+      </script>
     </div>
-</body>
+  </body>
 </html>

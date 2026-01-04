@@ -3,7 +3,7 @@ function loadPage(page, id) {
     .then(response => response.text())
     .then(data => {
       document.getElementById(id).innerHTML = data;
-    });
+    })
 }
 
 async function loadPageAddClass(page, id, id2) {
