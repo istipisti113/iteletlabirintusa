@@ -4,6 +4,7 @@ var segedfile
 var kapsebbonusz=0
 var oksebbonusz=0
 var szerencsebonusz=0
+var lastdamage
 
 function loadsegedfile(){
   fetch("/segedfile").then(resp => resp.json()).then(dat=>{
@@ -36,14 +37,17 @@ function korinditas(){
   var sajattamado = dobas()+dobas()+agility
 
   if (sajattamado>ellensegtamado){
+    lastdamage="player"
     enemy_health-=2
     document.getElementById("edamage").innerHTML=2
     document.getElementById("pdamage").innerHTML=""
   } else if (sajattamado<ellensegtamado){
+    lastdamage="enemy"
     health-=2+kapsebbonusz
     document.getElementById("edamage").innerHTML=""
     document.getElementById("pdamage").innerHTML=2+kapsebbonusz
   }
+
   if (health<=0){
     halal()
   } if (enemy_health<=0){
@@ -62,6 +66,29 @@ function korinditas(){
   }
   document.getElementById("ehealth").innerHTML=enemy_health
   document.getElementById("phealth").innerHTML=health
+  document.getElementById("szerencsehasznalat").disabled=false
+}
+
+function csataszerencse(){
+  console.log("csataszerencse")
+  if (szerencseproba()){
+    if (lastdamage=="player"){
+      document.getElementById("ehealth").innerHTML=Number(document.getElementById("ehealth").innerHTML)-2
+    } else{
+      document.getElementById("phealth").innerHTML=Number(document.getElementById("phealth").innerHTML)+1
+      health+=1
+    }
+  } else {
+    if (lastdamage=="player"){
+      document.getElementById("ehealth").innerHTML=Number(document.getElementById("ehealth").innerHTML)+1
+    } else{
+      document.getElementById("phealth").innerHTML=Number(document.getElementById("phealth").innerHTML)-1
+      health+=1
+    }
+  }
+  document.getElementById("luck").innerHTML=luck
+  document.getElementById("szerencsehasznalat").disabled=true
+  lastdamage=""
 }
 
 async function harc(enemies){
@@ -74,11 +101,6 @@ async function harc(enemies){
   for (var i = 0; i<enemies.length; i++){
     ellensegek.push(enemies[i].split(","))
     continue
-    var harcok = document.getElementById("harcok")
-    const ujharc = document.createElement("div")
-    var enemy = enemies[i].split(",")
-    ujharc.id=enemy[0]
-    harcok.appendChild(ujharc)
   }
   harcablak(ellensegek[0])
 }
@@ -97,12 +119,14 @@ async function harcablak(enemy){
       document.getElementById("pname").innerHTML = "jatekos"
       document.getElementById("luck").innerHTML = luck
       document.getElementById("korinditas").onclick = korinditas
+      document.getElementById("szerencsehasznalat").onclick = csataszerencse
     }).then(_=> document.getElementById("harcbutton").disabled=true)
   return Promise.resolve("asfd")
 }
 
 function halal(){
   console.log("meglaltal halo")
+  window.location.href = "/deathscreen"
 }
 
 function loadCard(page, id, cardid) {
@@ -124,17 +148,36 @@ async function newcard(id){
     return
   }
 
-  if (typeof segedfile[id].item !== 'undefined'){
-    var splitted = segedfile[id].item.split(" ")
-    var op = splitted[0]
-    var item = splitted[1]
-    if (op[0]=='+'){
-      if (typeof items[item] === 'undefined'){
-        items[item]=0
-      }
-      items[item]=Number(op.slice(1))
+  if (typeof segedfile[id].vane !== 'undefined'){
+    document.getElementById(segedfile[id].irany.split("-")[0]).disabled = true
+    document.getElementById(segedfile[id].irany.split("-")[1]).disabled = true
+    //animacio vagy valami
+    if (items[segedfile[id].vane] != undefined){
+      document.getElementById(segedfile[id].irany.split("-")[0]).disabled = false
+    } else {
+      document.getElementById(segedfile[id].irany.split("-")[1]).disabled = false
     }
   }
+
+  if (typeof segedfile[id].item !== 'undefined'){
+    var itemek = segedfile[id].item.split(";")
+    for (var i=0;i<itemek.length;i++){
+      var splitted = itemek[i].split(" ")
+      var op = splitted[0]
+      var item = splitted[1]
+      if (op[0]=='+'){
+        if (typeof items[item] === 'undefined'){
+          items[item]=0
+        }
+        items[item]=Number(op.slice(1))
+      } else {
+        if (typeof items[item] !== 'undefined'){
+          items[item]-=Number(op.slice(1))
+        }
+      }
+    }
+  }
+
 
   if (typeof segedfile[id].kapsebbonusz !== "undefined"){
     kapsebbonusz=Number(segedfile[id].kapsebbonusz)

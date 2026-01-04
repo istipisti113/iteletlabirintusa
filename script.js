@@ -17,10 +17,3 @@ async function loadPageAddClass(page, id, id2) {
     })
 }
 
-async function loadPage(page, id) {
-  return fetch(page)
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById(id).innerHTML = data;
-    })
-}

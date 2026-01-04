@@ -49,6 +49,7 @@ async fn main() {
     let header = warp::path("header").map(|| warp::reply::html(fs::read_to_string("html/header.html").unwrap()));
     let footer = warp::path("footer").map(|| warp::reply::html(fs::read_to_string("html/footer.html").unwrap()));
     let harc = warp::path("harc").map(|| warp::reply::html(fs::read_to_string("html/harc.html").unwrap()));
+    let deathscreen = warp::path("deathscreen").map(|| warp::reply::html(fs::read_to_string("html/deathscreen.html").unwrap()));
     let leiras = warp::path("leiras").map(move || warp::reply::html("a".replace("a", &h3(&jatekleiras))));
     let tortenetszoveg = warp::path("tortenetszoveg").map(move || warp::reply::html(String::from("asdf".replace("asdf", &h3(&hattertortenet)))));
     let segedfile = warp::path("segedfile").map(||{
@@ -95,7 +96,7 @@ async fn main() {
     });
 
     let routes = home.or(help).or(tortenet).or(cardspath).or(tortenetszoveg).or(leiras).or(szabalyok).or(jatek).or(segedfile).or(jatekscript).or(harc)
-    .or(script).or(css).or(szabalyokcss).or(header).or(footer);
+    .or(script).or(css).or(szabalyokcss).or(header).or(footer).or(deathscreen);
     warp::serve(routes).run(([0,0,0,0], port)).await;
 }
 

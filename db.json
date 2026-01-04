@@ -20,7 +20,8 @@
     "irany":"176-151"
   },
   "20":{
-    "tekerogombok":""
+    "tekerogombok":"",
+    "item":"+1 tekerogombok"
   },
   "37":{
     "szerencse":"proba",
@@ -85,8 +86,7 @@
     "irany":"97-138"
   },
   "83":{
-    "item":"+27 aranytaller",
-    "gyemant":"+1"
+    "item":"+27 aranytaller;+1 gyemant"
   },
   "85":{
     "item":"+3 aranytaller"
@@ -156,7 +156,7 @@
     "irany":"103-15"
   },
   "153":{
-    "sebzesbonusz":"1"
+    "kapsebbonusz":"1"
   },
   "155":{
     "menekules":"true",
@@ -171,7 +171,7 @@
     "irany":"43-115"
   },
   "165":{
-    "eletero":"minusz dobas",
+    "eletero":"-d",
     "item":"+1 arany_kulcs"
   },
   "167":{
