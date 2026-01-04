@@ -40,6 +40,10 @@ function szerencseproba(){
   else {return false}
 }
 
+function harc(){
+
+}
+
 function loadCard(page, id, cardid) {
   fetch(page)
     .then(response => response.text())
@@ -50,7 +54,7 @@ function loadCard(page, id, cardid) {
 
 async function newcard(id){
   if (typeof segedfile[id] === 'undefined'){
-    console.log("segedfile[id] undefined")
+    return
   }
   if (typeof segedfile[id].item !== 'undefined'){
     var splitted = segedfile[id].item.split(" ")
@@ -63,21 +67,38 @@ async function newcard(id){
       items[item]=Number(op.slice(1))
     }
   } if (typeof segedfile[id].eletero !== "undefined"){
+    var adding
+    if (segedfile[id].eletero.slice(1) === "d"){
+      adding = dobas()
+    } else {
+      adding = Number(segedfile[id].eletero.slice(1))
+    }
     if (segedfile[id].eletero[0]=="+"){
-      var adding
-      if (segedfile[id].eletero.slice(1) === "d"){
-        adding = dobas()
-      } else {
-        adding = Number(segedfile[id].eletero.slice(1))
-      }
       health+=adding
+    } else {
+      health-=adding
     }
   } if (typeof segedfile[id].szerencse !== "undefined"){
     if (segedfile[id].szerencse == "proba"){
       document.getElementById(segedfile[id].irany.split("-")[0]).disabled = true
       document.getElementById(segedfile[id].irany.split("-")[1]).disabled = true
+      //animacio vagy valami
       if (szerencseproba()){
-
+        document.getElementById(segedfile[id].irany.split("-")[0]).disabled = false
+      } else {
+        document.getElementById(segedfile[id].irany.split("-")[1]).disabled = false
+      }
+    } else {
+      var adding
+      //if (segedfile[id].szerencse.slice(1) === "d"){
+      //  adding = dobas()
+      //} else {
+      //}
+      adding = Number(segedfile[id].szerencse.slice(1))
+      if (segedfile[id].szerencse[0]=="+"){
+        health+=adding
+      } else {
+        health-=adding
       }
     }
   }
