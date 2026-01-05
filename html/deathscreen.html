@@ -6,6 +6,345 @@
     <title>Document</title>
   </head>
   <body>
-    A moka vege mara
+    <div class="death-screen" id="deathScreen" style="display: none; z-index: 9999;">
+  <div class="death-overlay"></div>
+  <div class="death-content">
+    <div class="death-header">
+      <div class="death-icon">💀</div>
+      <h1 class="death-title">HALÁL</h1>
+    </div>
+    
+    <div class="death-message" id="deathMessage">
+      A kalandodnak vége
+    </div>
+    
+    <div class="death-buttons">
+      <button class="death-btn restart-btn" onclick="restartGame()">
+        Újrakezdés
+      </button>
+      <button class="death-btn menu-btn" onclick="goToMainMenu()">
+        Főmenü
+      </button>
+    </div>
+  </div>
+</div>
+<div class="action-buttons" style="margin-top: 20px;">
+  <button class="btn" onclick="testDeath()" style="
+    background: linear-gradient(135deg, #330000, #1a0000);
+    color: #ff6666;
+  ">
+    💀 Teszt: Halál
+  </button>
+</div>
+
+<style>
+/* CSS változók definiálása (ha még nincsenek) */
+:root {
+  --blood-red: #ff0000;
+  --dark-blood: #8b0000;
+  --black-blood: #2d0000;
+  --bone-white: #ffffff;
+  --ghost-gray: #cccccc;
+  --blood-glow: #ff4444;
+}
+
+/* Death Screen Container */
+.death-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.death-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.death-content {
+  background: linear-gradient(135deg, 
+    #1a0000, 
+    #0a0000);
+  border: 3px solid var(--blood-red);
+  border-radius: 10px;
+  padding: 40px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 
+    0 0 50px rgba(255, 0, 0, 0.5),
+    0 0 100px rgba(255, 0, 0, 0.2),
+    inset 0 0 50px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  animation: deathAppear 0.5s ease-out;
+}
+
+@keyframes deathAppear {
+  0% { 
+    transform: scale(0.7); 
+    opacity: 0; 
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+/* Death Header */
+.death-header {
+  margin-bottom: 30px;
+}
+
+.death-icon {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  animation: skullFloat 3s infinite ease-in-out;
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.8));
+}
+
+@keyframes skullFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.death-title {
+  font-size: 3.5rem;
+  color: #ff0000;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.9), 
+    0 0 25px rgba(255, 0, 0, 0.9),
+    0 0 50px rgba(255, 0, 0, 0.6);
+  font-family: 'UnifrakturMaguntia', cursive;
+  letter-spacing: 4px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Death Message */
+.death-message {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin: 30px 0;
+  padding: 20px;
+  font-family: 'MedievalSharp', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  background: rgba(139, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+/* Death Buttons */
+.death-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.death-btn {
+  padding: 18px 25px;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: 'MedievalSharp', cursive;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.death-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #ff0000, #8b0000);
+}
+
+.restart-btn:hover {
+  background: linear-gradient(135deg, #ff4444, #ff0000);
+  box-shadow: 0 8px 25px rgba(255, 68, 68, 0.6);
+}
+
+.menu-btn {
+  background: linear-gradient(135deg, #8b0000, #2d0000);
+}
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, #8b0000, #5c0000);
+  box-shadow: 0 8px 25px rgba(139, 0, 0, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .death-content {
+    padding: 30px 20px;
+  }
+  
+  .death-icon {
+    font-size: 3rem;
+  }
+  
+  .death-title {
+    font-size: 2.5rem;
+  }
+  
+  .death-message {
+    font-size: 1.5rem;
+    padding: 15px;
+  }
+  
+  .death-buttons {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .death-btn {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+  }
+}
+</style>
+
+<script>
+// Death Screen állapot
+let deathScreenActive = false;
+
+// Halálüzenetek listája
+const deathMessages = [
+  "A kalandodnak vége",
+  "Elvesztettél",
+  "Game Over",
+  "Vége",
+  "Halál",
+  "Vereség",
+  "Búcsú",
+  "Feladva",
+  "Áldozat",
+  "Nincs visszatérés",
+  "Örök sötétség",
+  "A sötétség elnyelt",
+  "Véget ért a kaland",
+  "Az út vége",
+  "Kudarc"
+];
+
+// Death Screen megjelenítése
+function showDeathScreen() {
+  if (deathScreenActive) return;
+  
+  deathScreenActive = true;
+  
+  // Véletlenszerű halálüzenet
+  const randomMessage = deathMessages[Math.floor(Math.random() * deathMessages.length)];
+  
+  // UI frissítése
+  const deathScreen = document.getElementById('deathScreen');
+  const deathMessage = document.getElementById('deathMessage');
+  
+  deathScreen.style.display = 'flex';
+  deathMessage.textContent = randomMessage;
+  
+  // Animáció indítása
+  deathScreen.style.animation = 'none';
+  setTimeout(() => {
+    deathScreen.style.animation = '';
+  }, 10);
+  
+  // Fókusz a gombokra
+  setTimeout(() => {
+    document.querySelector('.restart-btn').focus();
+  }, 500);
+}
+
+// Death Screen elrejtése
+function hideDeathScreen() {
+  deathScreenActive = false;
+  document.getElementById('deathScreen').style.display = 'none';
+}
+
+// Új játék indítása
+function restartGame() {
+  hideDeathScreen();
+  
+  // Karakter visszaállítása
+  if (typeof resetCharacter === 'function') {
+    resetCharacter();
+  }
+  
+  // Értesítés
+  console.log("Új játék kezdődött!");
+  
+  // Játék logika itt folytatódik
+  // TODO: Játék újrakezdése
+}
+
+// Főmenübe navigálás
+function goToMainMenu() {
+  hideDeathScreen();
+  
+  // TODO: Főmenübe navigálás logika
+  console.log("Főmenübe navigálva...");
+  // window.location.href = "index.html";
+}
+
+// Teszt: Death Screen megjelenítése
+function testDeath() {
+  showDeathScreen();
+  console.log("💀 Death Screen tesztelése...");
+}
+
+// Teszt gomb automatikus létrehozása
+document.addEventListener('DOMContentLoaded', function() {
+  // Teszt gomb létrehozása
+  const testButton = document.createElement('button');
+  testButton.innerHTML = '💀 Test Death';
+  testButton.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: linear-gradient(135deg, #ff0000, #8b0000);
+    color: white;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-family: 'MedievalSharp', cursive;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  `;
+  testButton.onclick = testDeath;
+  
+  // Gomb hozzáadása az oldalhoz
+  document.body.appendChild(testButton);
+  
+  // Konzol üzenet
+  console.log('🧪 Death Screen tester activated! Use testDeath() function or F9 key.');
+  
+  // Billentyűzet tesztelés
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F9') {
+      testDeath();
+      e.preventDefault();
+    }
+  });
+});
+</script>
   </body>
 </html>
